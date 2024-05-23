@@ -1,5 +1,6 @@
 * pip install django
 * pip install pillow
+* pip install django_browser_reload
 * pip install django-tailwind
 * python manage.py tailwind install
 * pip install tailwind
