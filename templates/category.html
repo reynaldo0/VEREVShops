@@ -3,4 +3,35 @@
 {% include 'banner.html' %}
 {% load static %}
 
-{{ val }}
+<section class="text-gray-600 body-font">
+    <div class="flex flex-col text-center w-full py-5">
+        <h1 class="sm:text-4xl text-3xl font-medium title-font text-gray-900">
+          Product
+        </h1>
+        <p class="lg:w-2/3 leading-relaxed text-base mx-5 lg:mx-auto">
+          Berikut adalah beberapa Produk yang kami tawarkan
+        </p>
+      </div>
+      <div class="container px-5 mx-auto">
+        <div class="flex flex-wrap -m-4">
+            {% for prod in product %}
+            <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a class="block relative rounded overflow-hidden">
+                    <img alt="ecommerce" class="object-contain h-48" src="{% static "images/coffe/gulaaren.png" %}">
+                </a>
+                <div class="mt-4">
+                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY: {{ prod.get_category_display }}</h3>
+                    <h2 class="text-gray-900 title-font text-lg font-medium">{{ prod.title }}</h2>
+                    <p class="mt-1">
+                        <span class="text-gray-900 text-xl">{{ prod.formatted_discounted_price }} /-</span>
+                        <span class="line-through text-red-500">{{ prod.formatted_selling_price }}</span>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+
+  </div>
+</section>

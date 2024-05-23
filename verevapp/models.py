@@ -17,3 +17,11 @@ class Product(models.Model):
     product_image = models.ImageField(upload_to='product')
     def __str__(self):
         return self.title
+    def formatted_selling_price(self):
+        return "Rp. {:,.3f}".format(self.selling_price).replace(',', '.') #Format biar bisa ada 0 setelah koma
+
+    def formatted_discounted_price(self):
+        return "Rp. {:,.3f}".format(self.discounted_price).replace(',', '.') #Format biar bisa ada 0 setelah koma
+    
+    def getCategory(self):
+        return dict(CATEGORY_CHOICES).get(self.category, self.category)
