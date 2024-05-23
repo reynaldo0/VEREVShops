@@ -2,14 +2,8 @@ from django.db import models
 
 # Create your models here.
 CATEGORY_CHOICES=(
-    ('CR', 'Curd'),
-    ('ML', 'Milk'),
-    ('LS', 'Lassi'),
-    ('MS', 'Milkshake'),
-    ('PN', 'Paneer'),
-    ('GH', 'Ghee'),
-    ('CZ', 'Cheese'),
-    ('IC', 'Ice-Creams'),
+    ('CF', 'Coffe'),
+    ('DS', 'Dessert'),
 )
 
 class Product(models.Model):

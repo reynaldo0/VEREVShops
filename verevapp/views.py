@@ -6,5 +6,5 @@ def home(req):
     return render(req, 'index.html', {})
 
 class CategoryView(View):
-    def get(self,req):
-        return render(req, 'category.html')
+    def get(self, req, val):
+        return render(req, 'category.html', locals())
