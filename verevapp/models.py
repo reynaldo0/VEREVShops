@@ -24,4 +24,7 @@ class Product(models.Model):
         return "Rp. {:,.3f}".format(self.discounted_price).replace(',', '.') #Format biar bisa ada 0 setelah koma
     
     def getCategory(self):
-        return dict(CATEGORY_CHOICES).get(self.category, self.category)
+        return dict(CATEGORY_CHOICES).get(self.category, self.category) # Membuat agar yang tampil kepanjangan nama kategori
+    
+    def get_all_categories():
+        return ', '.join([label for _, label in CATEGORY_CHOICES]) # mengambil semua kategori yang ada
