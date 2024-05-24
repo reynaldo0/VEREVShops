@@ -12,20 +12,40 @@
           Berikut adalah beberapa Produk yang kami tawarkan
         </p>
       </div>
-      <div class="container px-5 mx-auto">
-        <div class="flex flex-wrap -m-4">
+      <div class="container mx-auto max-w-screen-xl px-16 md:px-10">
+        <div class="flex flex-wrap">
             {% for prod in product %}
             <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
                 <a class="block relative rounded overflow-hidden">
-                    <img alt="ecommerce" class="object-contain h-48" src="{{ prod.product_image.url }}">
+                    <img alt="ecommerce" class="object-contain w-52 h-56" src="{{ prod.product_image.url }}">
                 </a>
                 <div class="mt-4">
                     <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">CATEGORY: {{ prod.get_category_display }}</h3>
                     <h2 class="text-gray-900 title-font text-lg font-medium">{{ prod.title }}</h2>
                     <p class="mt-1">
-                        <span class="text-gray-900 text-xl">{{ prod.formatted_discounted_price }} /-</span>
-                        <span class="line-through text-red-500">{{ prod.formatted_selling_price }}</span>
+                        <span class="text-gray-900 text-xl">{{ prod.fdiscounted_price }} /-</span>
+                        <span class="line-through text-red-500">{{ prod.fselling_price }}</span>
                     </p>
+                    <a
+          href="{% url 'proddetail' prod.id %}"
+          class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-00 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800 my-5 mx-10 md:mx-0"
+        >
+          Read more<svg
+            class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
+          </svg>
+        </a>
                 </div>
             </div>
             {% endfor %}
