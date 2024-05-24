@@ -26,3 +26,9 @@ class ProductDetail(View):
     def get(self, req, pk):
         product = Product.objects.get(pk=pk) #pk = primary key
         return render(req, 'proddetail.html', locals())
+    
+def about(req):
+    return render(req, 'about.html')
+
+def contact(req):
+    return render(req, 'contact.html')
