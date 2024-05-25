@@ -2,6 +2,7 @@ from django.db.models import Count
 from django.shortcuts import render
 from django.views import View
 from . models import Product
+from . forms import CustomerRegistForm
 
 # Create your views here.
 def home(req):
@@ -32,3 +33,13 @@ def about(req):
 
 def contact(req):
     return render(req, 'contact.html')
+
+class CustomerRegistView(View):
+    def get(self, req):
+        form = CustomerRegistForm()
+        return render(req, 'regist.html', locals())
+    
+class CustomerRegistView2(View):
+    def get(self, req):
+        form = CustomerRegistForm()
+        return render(req, 'regist2.html', locals())
