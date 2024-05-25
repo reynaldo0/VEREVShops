@@ -2,7 +2,7 @@ from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.views import View
 from . models import Product
-from . forms import CustomerRegistForm
+from . forms import CustomerRegistForm, CustomerProfileForm
 from django.contrib import messages
 
 # Create your views here.
@@ -49,8 +49,9 @@ class CustomerRegistView(View):
             messages.warning(req,"Data Yang Dimasukan Salah!")
         return render(req, 'regist.html', locals())
         
-    
-class CustomerRegistView2(View):
+class ProfileView(View):
     def get(self, req):
-        form = CustomerRegistForm()
-        return render(req, 'regist2.html', locals())
+        form = CustomerProfileForm()
+        return render(req, 'profile.html', locals())
+    def get(self, req):
+        return render(req, 'profile.html', locals())
