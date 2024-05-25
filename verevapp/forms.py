@@ -62,11 +62,28 @@ class CustomerProfileForm(forms.ModelForm):
         model = Customer
         fields = ['name','locality','city','mobile', 'state', 'zipcode']
         widgets = {
-            'name':forms.TextInput(attrs={'class':'form-control'}),
-            'locality':forms.TextInput(attrs={'class':'form-control'}),
-            'city':forms.TextInput(attrs={'class':'form-control'}),
-            'mobile':forms.NumberInput(attrs={'class':'form-control'}),
-            'state':forms.Select(attrs={'class':'form-control'}),
-            'zipcode':forms.NumberInput(attrs={'class':'form-control'}),
-            
+            'name': forms.TextInput(attrs={
+                'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+                'placeholder': 'Name'
+            }),
+            'locality': forms.TextInput(attrs={
+                'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+                'placeholder': 'Locality'
+            }),
+            'city': forms.TextInput(attrs={
+                'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+                'placeholder': 'City'
+            }),
+            'mobile': forms.NumberInput(attrs={
+                'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+                'placeholder': 'Mobile'
+            }),
+            'state': forms.Select(attrs={
+                'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+                'placeholder': 'State'
+            }),
+            'zipcode': forms.NumberInput(attrs={
+                'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+                'placeholder': 'Zipcode'
+            }),
         }

@@ -50,8 +50,16 @@ class CustomerRegistView(View):
         return render(req, 'regist.html', locals())
         
 class ProfileView(View):
-    def get(self, req):
+    def get(self, request):
         form = CustomerProfileForm()
-        return render(req, 'profile.html', locals())
-    def get(self, req):
-        return render(req, 'profile.html', locals())
+        return render(request, 'profile.html', {'form': form})
+
+    def post(self, request):
+        form = CustomerProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully")
+            return redirect('profile.html')  # Redirect ke halaman sukses setelah update profile
+        else:
+            messages.warning(request, "Please correct the errors below")
+        return render(request, 'profile.html', {'form': form})
