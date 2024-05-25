@@ -1,8 +1,9 @@
 from django.db.models import Count
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from . models import Product
 from . forms import CustomerRegistForm
+from django.contrib import messages
 
 # Create your views here.
 def home(req):
@@ -38,6 +39,16 @@ class CustomerRegistView(View):
     def get(self, req):
         form = CustomerRegistForm()
         return render(req, 'regist.html', locals())
+    def post(self, req):
+        form = CustomerRegistForm(req.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(req,"Selamat! Berhasil login")
+            return redirect('login')
+        else:
+            messages.warning(req,"Data Yang Dimasukan Salah!")
+        return render(req, 'regist.html', locals())
+        
     
 class CustomerRegistView2(View):
     def get(self, req):
