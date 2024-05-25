@@ -10,10 +10,11 @@ class LoginForm(AuthenticationForm):
             'placeholder': 'Masukan Username Anda'
         })
     )
-    password1 = forms.CharField(
+    password = forms.CharField(
         label='Password',
         widget=forms.PasswordInput(attrs={
             'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+            'autocomplete':'current-password',
             'placeholder': 'Masukan Password Anda'
         })
     )

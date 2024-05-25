@@ -5,9 +5,9 @@
     <div class="relative flex flex-col my-6 md:my-3 mx-6 space-y-8 bg-blue-100 shadow-2xl shadow-blue-900 rounded-2xl md:flex-row md:space-y-0">
         <!-- Left side -->
         <div class="flex flex-col justify-center p-8 md:p-14">
-            <span class="mb-3 text-4xl font-bold">Welcome back</span>
+            <span class="mb-3 text-4xl font-bold">Selamat Datang!</span>
             <span class="font-light text-gray-400 mb-8">
-                Welcome back! Please enter your details
+                Selamat Datang! Silahkan isi data anda!
             </span>
             
             <form method="post">
@@ -41,7 +41,7 @@
             {% endif %}
                 <div class="text-center text-gray-400">
                     Sudah punya akun?
-                    <span class="font-bold text-black">Masuk</span>
+                    <a href="{% url 'login' %}"><span class="font-bold text-black">Masuk</span></a>
                 </div>
             </form>
             
