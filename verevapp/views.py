@@ -1,7 +1,7 @@
 from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.views import View
-from . models import Product
+from . models import Customer, Product
 from . forms import CustomerRegistForm, CustomerProfileForm
 from django.contrib import messages
 
@@ -57,9 +57,43 @@ class ProfileView(View):
     def post(self, request):
         form = CustomerProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            messages.success(request, "Profile updated successfully")
+            user = request.user
+            name = form.cleaned_data['name']
+            locality = form.cleaned_data['locality']
+            city = form.cleaned_data['city']
+            mobile = form.cleaned_data['mobile']
+            state = form.cleaned_data['state']
+            zipcode = form.cleaned_data['zipcode']
+            reg = Customer(user=user, name=name, locality=locality, city=city, mobile=mobile, state=state, zipcode=zipcode)
+            reg.save()
+            messages.success(request, "Selamat Profile Berhasil Di Update")
             return redirect('profile.html')  # Redirect ke halaman sukses setelah update profile
         else:
-            messages.warning(request, "Please correct the errors below")
+            messages.warning(request, "Data Yang Di Masukan Tidak Valid")
         return render(request, 'profile.html', {'form': form})
+    
+def setting(req):
+    add = Customer.objects.filter(user= req.user)
+    return render(req, 'setting.html', locals())
+
+class updateSetting(View):
+    def get(self, req, pk):
+        add = Customer.objects.get(pk=pk)
+        form = CustomerProfileForm(instance=add)
+        return render(req, 'updateSetting.html', locals())
+
+    def post(self, req, pk):
+        form = CustomerProfileForm(req.POST)
+        if form.is_valid():
+            add = Customer.objects.get(pk=pk)
+            add.name = form.cleaned_data['name']
+            add.locality = form.cleaned_data['locality']
+            add.city = form.cleaned_data['city']
+            add.mobile = form.cleaned_data['mobile']
+            add.state = form.cleaned_data['state']
+            add.zipcode = form.cleaned_data['zipcode']
+            add.save()
+            messages.success(req, "Selamat Profile Berhasil Di Update")
+        else:
+            messages.warning(req, "Data Yang Di Masukan Tidak Valid")
+        return redirect("setting")

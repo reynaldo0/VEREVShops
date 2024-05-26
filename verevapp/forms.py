@@ -61,29 +61,37 @@ class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['name','locality','city','mobile', 'state', 'zipcode']
+        labels = {
+            'name': 'Nama Lengkap',
+            'kec': 'Nama Kecamatan',
+            'city': 'Nama Kota',
+            'mobile': 'Nomor Telepon',
+            'state': 'Nama Pulau',
+            'zipcode': 'Kode Pos',
+        }
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
-                'placeholder': 'Name'
+                'placeholder': 'Nama Lengkap'
             }),
             'locality': forms.TextInput(attrs={
                 'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
-                'placeholder': 'Locality'
+                'placeholder': 'Nama Kecamatan'
             }),
             'city': forms.TextInput(attrs={
                 'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
-                'placeholder': 'City'
+                'placeholder': 'Nama Kota'
             }),
             'mobile': forms.NumberInput(attrs={
                 'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
-                'placeholder': 'Mobile'
+                'placeholder': 'Nomor Telepon'
             }),
             'state': forms.Select(attrs={
                 'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
-                'placeholder': 'State'
+                'placeholder': 'Nama Pulau'
             }),
             'zipcode': forms.NumberInput(attrs={
                 'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
-                'placeholder': 'Zipcode'
+                'placeholder': 'Kode Pos'
             }),
         }

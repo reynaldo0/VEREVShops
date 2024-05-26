@@ -22,12 +22,19 @@
                 <div class="flex justify-between w-full pt-4">
                   <span class="font-bold text-black text-md">{{request.user}}, Simpan Data?</span>
                 </div>
-                <button
+                <div class="flex flex-row">
+                    <button  
                     type="submit"
-                    class="w-full my-5 bg-blue-700 text-white p-2 rounded-lg mb-6 hover:bg-blue-600"
+                    class="w-1/4 my-5 px-6 bg-blue-700 text-white p-2 rounded-lg mb-6 hover:bg-blue-600"
                 >
-                    Simpan
+                    Update
                 </button>
+                <a href="{% url 'setting' %}"
+                    class="w-1/4 mx-5 my-5 px-6 bg-red-700 text-white p-2 rounded-lg mb-6 hover:bg-red-600"
+                >
+                    Kembali
+                </a>
+                </div>
                 <!-- Error and message handling -->
             
                 {% if messages %}
