@@ -6,28 +6,25 @@
     <div class="relative flex flex-col my-6 md:my-3 mx-6 space-y-8 bg-blue-100 shadow-2xl shadow-blue-900 rounded-2xl md:flex-row md:space-y-0">
         <!-- Left side -->
         <div class="flex flex-col justify-center p-8 md:p-14">
-            <span class="mb-3 text-4xl font-bold">Selamat Datang! {{ request.user }}</span>
+            <span class="mb-3 text-4xl font-bold">Perbarui Alamat, {{ request.user }}</span>
             <span class="font-light text-gray-400 mb-8">
                 Silahkan Lengkapkan Data Diri Anda!
             </span>
             
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
                 {% for fm in form %}
-                    {% for error in fm.errors %}
-                        <p class="text-red-500">{{ error|striptags }}</p>
-                    {% endfor %}
+                    {{ fm.label_tag }}{{ fm }}<p class="text-red-500">{{ fm.errors|striptags }}</p>
                 {% endfor %}
                 <div class="flex justify-between w-full pt-4">
-                  <span class="font-bold text-black text-md">{{request.user}}, Simpan Data?</span>
+                  <span class="font-bold text-black text-md">{{request.user}}, Perbarui Alamat?</span>
                 </div>
                 <div class="flex flex-row">
                     <button  
                     type="submit"
                     class="w-1/4 my-5 px-6 bg-blue-700 text-white p-2 rounded-lg mb-6 hover:bg-blue-600"
                 >
-                    Update
+                    Simpan
                 </button>
                 <a href="{% url 'setting' %}"
                     class="w-1/4 mx-5 my-5 px-6 bg-red-700 text-white p-2 rounded-lg mb-6 hover:bg-red-600"
@@ -51,8 +48,8 @@
                 {% endfor %}
             {% endif %}
                 <div class="text-center text-gray-400">
-                    Ingin mengganti Data Diri?
-                    <a href="{% url 'regist' %}"><span class="font-bold text-black">Ganti Data</span></a>
+                    Ingin Menambahkan Alamat?
+                    <a href="{% url 'profile' %}"><span class="font-bold text-black">Tambah Alamat</span></a>
                 </div>
             </form>
             

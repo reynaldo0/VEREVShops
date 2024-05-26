@@ -884,11 +884,6 @@ select {
   margin-bottom: 0px;
 }
 
-.my-12 {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -907,11 +902,6 @@ select {
 .my-7 {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
-}
-
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
 }
 
 .-mb-10 {
@@ -1094,6 +1084,10 @@ select {
   min-height: 100vh;
 }
 
+.w-1\/4 {
+  width: 25%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -1152,14 +1146,6 @@ select {
 
 .w-full {
   width: 100%;
-}
-
-.w-screen {
-  width: 100vw;
-}
-
-.w-1\/4 {
-  width: 25%;
 }
 
 .max-w-screen-xl {
@@ -1424,6 +1410,11 @@ select {
   background-color: rgb(99 102 241 / var(--tw-bg-opacity));
 }
 
+.bg-red-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1438,9 +1429,9 @@ select {
   background-color: rgb(254 252 232 / var(--tw-bg-opacity));
 }
 
-.bg-red-700 {
+.bg-red-50 {
   --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
 
 .object-contain {
@@ -1476,6 +1467,10 @@ select {
 
 .p-8 {
   padding: 2rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-10 {
@@ -1559,6 +1554,10 @@ select {
   padding-right: 0.75rem;
 }
 
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
 .pt-20 {
   padding-top: 5rem;
 }
@@ -1590,11 +1589,6 @@ select {
   line-height: 2.5rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1622,10 +1616,6 @@ select {
 
 .font-bold {
   font-weight: 700;
-}
-
-.font-extrabold {
-  font-weight: 800;
 }
 
 .font-light {
@@ -1753,6 +1743,11 @@ select {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity));
+}
+
+.text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2303,6 +2298,11 @@ select {
   .dark\:text-yellow-400 {
     --tw-text-opacity: 1;
     color: rgb(250 204 21 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-red-400 {
+    --tw-text-opacity: 1;
+    color: rgb(248 113 113 / var(--tw-text-opacity));
   }
 
   .dark\:hover\:bg-blue-700:hover {

@@ -1,4 +1,5 @@
 {% include 'base.html' %}
+{% include "navbar.html" %}
 {% load static %}
 
 <div class="flex items-center justify-center min-h-screen bg-blue-300">
@@ -10,11 +11,14 @@
                 Selamat Datang! Silahkan isi data anda!
             </span>
             
-            <form method="post" novalidate>
+            <form method="post">
                 {% csrf_token %}
                 {% for fm in form %}
                     {{ fm.label_tag }}{{ fm }}<p class="text-red-500">{{ fm.errors|striptags }}</p>
                 {% endfor %}
+                <div class="flex justify-between w-full pt-4">
+                  <a href="#"><span class="font-bold text-blue-500 underline text-md">Forgot password?</span><a/>
+                </div>
                 <button
                     type="submit"
                     class="w-full my-5 bg-blue-700 text-white p-2 rounded-lg mb-6 hover:bg-blue-600"
@@ -35,10 +39,10 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-                {% endif %}
+            {% endif %}
                 <div class="text-center text-gray-400">
-                    Sudah punya akun?
-                    <a href="{% url 'login' %}"><span class="font-bold text-black">Masuk</span></a>
+                    Tidak punya akun?
+                    <a href="{% url 'regist' %}"><span class="font-bold text-black">Daftar</span></a>
                 </div>
             </form>
             

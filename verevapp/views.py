@@ -67,7 +67,7 @@ class ProfileView(View):
             reg = Customer(user=user, name=name, locality=locality, city=city, mobile=mobile, state=state, zipcode=zipcode)
             reg.save()
             messages.success(request, "Selamat Profile Berhasil Di Update")
-            return redirect('profile.html')  # Redirect ke halaman sukses setelah update profile
+            return redirect('setting')  # Redirect ke halaman sukses setelah update profile
         else:
             messages.warning(request, "Data Yang Di Masukan Tidak Valid")
         return render(request, 'profile.html', {'form': form})
@@ -97,3 +97,4 @@ class updateSetting(View):
         else:
             messages.warning(req, "Data Yang Di Masukan Tidak Valid")
         return redirect("setting")
+    

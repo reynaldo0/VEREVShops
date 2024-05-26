@@ -54,8 +54,32 @@ class CustomerRegistForm(UserCreationForm):
         model = User
         fields = ['username','email']
 
-class MyPasswordResetForm(PasswordChangeForm):
-    pass
+class MyPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label='Password Lama',
+        widget=forms.PasswordInput(attrs={
+            'autofocus':'True',
+            'autocomplete':'current-password',
+            'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+            'placeholder': 'Masukan Password Anda'
+        })
+    )
+    new_password1 = forms.CharField(
+        label='New Password',
+        widget=forms.PasswordInput(attrs={
+            'autocomplete':'current-password',
+            'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+            'placeholder': 'Masukan Password Anda'
+        })
+    )
+    new_password2 = forms.CharField(
+        label='Konfirmasi',
+        widget=forms.PasswordInput(attrs={
+            'autocomplete':'current-password',
+            'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+            'placeholder': 'Masukan Password Anda'
+        })
+    )
 
 class CustomerProfileForm(forms.ModelForm):
     class Meta:
@@ -63,7 +87,7 @@ class CustomerProfileForm(forms.ModelForm):
         fields = ['name','locality','city','mobile', 'state', 'zipcode']
         labels = {
             'name': 'Nama Lengkap',
-            'kec': 'Nama Kecamatan',
+            'locality': 'Nama Kecamatan',
             'city': 'Nama Kota',
             'mobile': 'Nomor Telepon',
             'state': 'Nama Pulau',
