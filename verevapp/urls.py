@@ -19,7 +19,9 @@ urlpatterns = [
     # Regist & Login Auth
     path("regist/", views.CustomerRegistView.as_view(), name='regist'),
     path("login/", auth_view.LoginView.as_view(template_name='login.html', authentication_form=LoginForm), name='login'),
-    path("changepw/", auth_view.PasswordChangeView.as_view(template_name='changepw.html', form_class=MyPasswordChangeForm, success_url='home'), name='changepw'),
+    path("changepw/", auth_view.PasswordChangeView.as_view(template_name='changepw.html', form_class=MyPasswordChangeForm, success_url='/home'), name='changepw'),
+    path("login/", auth_view.LogoutView.as_view(next_page='login'), name='logout'),
+    
     
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

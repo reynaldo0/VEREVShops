@@ -5,7 +5,7 @@
 >
   {% for ad in add %}
   <div
-    class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+    class="w-full max-w-sm p-4 bg-blue-900 border border-gray-200 rounded-lg shadow sm:p-8"
   >
     <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
       PENGATURAN ALAMAT
@@ -29,7 +29,7 @@
           />
         </svg>
         <span
-          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400 ms-3"
+          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-300 ms-3"
           >Name : {{ ad.name }}
         </span>
       </li>
@@ -46,7 +46,7 @@
           />
         </svg>
         <span
-          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400 ms-3"
+          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-300 ms-3"
           >Nama Kecamatan : {{ ad.locality }}
         </span>
       </li>
@@ -63,7 +63,7 @@
           />
         </svg>
         <span
-          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400 ms-3"
+          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-300 ms-3"
           >Nama Kota : {{ad.city}}</span
         >
       </li>
@@ -80,7 +80,7 @@
           />
         </svg>
         <span
-          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400 ms-3"
+          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-300 ms-3"
           >Nomor Telepon : {{ad.mobile}}</span
         >
       </li>
@@ -97,7 +97,7 @@
           />
         </svg>
         <span
-          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400 ms-3"
+          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-300 ms-3"
           >Nama Pulau : {{ad.state}}</span
         >
       </li>
@@ -114,7 +114,7 @@
           />
         </svg>
         <span
-          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400 ms-3"
+          class="text-base font-normal leading-tight text-gray-500 dark:text-gray-300 ms-3"
           >Kode Pos : {{ad.zipcode}}</span
         >
       </li>
@@ -131,11 +131,13 @@
 </div>
 
 <div class="mx-auto max-w-screen-xl py-5">
-    <div class="mx-10">
+    <div class="">
       <a href="{% url 'profile' %}"
       type="submit"
-      class="text-center w-full bg-blue-700 text-white p-2 rounded-lg mb-6 hover:bg-blue-600">
+      class="text-center w-full bg-blue-700 text-white p-2 mb-6 hover:bg-blue-600">
       Tambah Alamat Baru
     </a>
     </div>
   </div>
+
+{% include "footer.html" %}

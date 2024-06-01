@@ -65,7 +65,7 @@ class MyPasswordChangeForm(PasswordChangeForm):
         })
     )
     new_password1 = forms.CharField(
-        label='New Password',
+        label='Password Baru',
         widget=forms.PasswordInput(attrs={
             'autocomplete':'current-password',
             'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
@@ -73,7 +73,7 @@ class MyPasswordChangeForm(PasswordChangeForm):
         })
     )
     new_password2 = forms.CharField(
-        label='Konfirmasi',
+        label='Konfirmasi Password',
         widget=forms.PasswordInput(attrs={
             'autocomplete':'current-password',
             'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
@@ -111,7 +111,7 @@ class CustomerProfileForm(forms.ModelForm):
                 'placeholder': 'Nomor Telepon'
             }),
             'state': forms.Select(attrs={
-                'class': 'w-full p-2 border border-black bg-transparent backdrop-blur rounded-md placeholder:font-light placeholder:text-gray-500',
+                'class': 'w-full p-2 border border-black rounded-md placeholder:font-light placeholder:text-gray-500',
                 'placeholder': 'Nama Pulau'
             }),
             'zipcode': forms.NumberInput(attrs={

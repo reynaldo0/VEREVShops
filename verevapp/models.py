@@ -43,7 +43,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=100)
     locality = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
-    mobile = models.IntegerField(default=0)
+    mobile = models.IntegerField()
     zipcode = models.IntegerField()
     state = models.CharField(choices=AREA_CHOICES, max_length=100)
     
