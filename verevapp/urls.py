@@ -15,6 +15,9 @@ urlpatterns = [
     path("profile/", views.ProfileView.as_view(), name='profile'),
     path("setting/", views.setting, name='setting'),
     path("updateSetting/<int:pk>", views.updateSetting.as_view(), name='updateSetting'),
+    path("add-cart/", views.add_cart, name='add-cart'),
+    # path("cart/", views.show_cart, name='showcart'),
+
 
     # Regist & Login Auth
     path("regist/", views.CustomerRegistView.as_view(), name='regist'),

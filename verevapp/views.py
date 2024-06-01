@@ -98,3 +98,5 @@ class updateSetting(View):
             messages.warning(req, "Data Yang Di Masukan Tidak Valid")
         return redirect("setting")
     
+def add_cart(req):
+    user = req.user
