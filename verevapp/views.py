@@ -1,7 +1,7 @@
 from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.views import View
-from . models import Customer, Product
+from . models import Cart, Customer, Product
 from . forms import CustomerRegistForm, CustomerProfileForm
 from django.contrib import messages
 
@@ -100,3 +100,12 @@ class updateSetting(View):
     
 def add_cart(req):
     user = req.user
+    product_id = req.GET.get('prod_id')
+    product = Product.objects.get(id = product_id)
+    Cart(user=user, product=product).save()
+    return redirect("/cart")
+
+def show_cart(req):
+    user = req.user
+    cart = Cart.objects.filter(user=user)
+    return render(req, 'addcart.html', locals())
