@@ -1,6 +1,4 @@
-{% include "base.html" %} 
-{% include "navbar.html" %} 
-{% if cart %}
+{% include "base.html" %} {% include "navbar.html" %} {% if cart %}
 <h1 class="text-black font-bold container mx-auto text-center text-4xl mt-10">
   Shopping Cart
 </h1>
@@ -10,9 +8,8 @@
       List Item Anda
     </h3>
     <div class="flex flex-wrap w-full">
-      <!-- Bagian Daftar Menu (70%) -->
-
-      <div class="w-full md:w-7/12 p-4">
+      <!-- Bagian Daftar Menu (75%) -->
+      <div class="w-full md:w-3/4 p-4">
         {% for item in cart %}
         <div
           class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
@@ -46,29 +43,53 @@
               >
                 Remove
               </button>
-              <span class="ml-auto text-xl mt-7 font-bold">{{ item.product.fselling_price }}/-</span>
+              <span class="ml-auto text-xl mt-7 font-bold"
+                >{{ item.product.fselling_price }}/-</span
+              >
             </div>
           </div>
         </div>
         {% endfor %}
       </div>
-      <!-- Bagian Pembayaran (30%) -->
-      <div class="w-full md:w-5/12 p-4">
+      <!-- Bagian Pembayaran (25%) -->
+      <div class="w-full md:w-1/4 p-4">
         <div
           class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
         >
           <div class="flex-grow">
             <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-              Payment Section
+              Pembayaran Detail
             </h2>
-            <p class="leading-relaxed text-base">
-              Place your payment details here.
+            <p class="leading-relaxed text-base flex justify-between">
+              Jumlah
+              <span class="text-green-600 font-semibold ml-auto"
+                >RP {{ amount }}</span
+              >
             </p>
+            <p class="leading-relaxed text-base flex justify-between">
+              Ongkir
+              <span class="text-green-600 font-semibold ml-auto"
+                >RP {{ shipping_cost }}</span
+              >
+            </p>
+            <hr class="border-gray-200 mt-3" />
+            <p class="leading-relaxed text-base flex justify-between">
+              Total
+              <span class="text-green-600 font-semibold"
+                >RP {{ totalamount }}</span
+              >
+            </p>
+            <button
+              type="submit"
+              class="w-full my-5 bg-blue-700 text-white p-2 rounded-lg mb-6 hover:bg-blue-600"
+            >
+              Buat Pesanan
+            </button>
             <!-- Tambahkan konten pembayaran di sini -->
           </div>
         </div>
       </div>
     </div>
   </div>
-  {% endif %}
 </section>
+{% endif %}
