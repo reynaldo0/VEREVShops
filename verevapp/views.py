@@ -178,3 +178,88 @@ def plus_cart(req):
         except Exception as e:
             print(f"An error occurred: {e}")
             return JsonResponse({'error': str(e)}, status=500)
+
+def minus_cart(req):
+    if req.method == 'GET':
+        try:
+            prod_id = req.GET['prod_id']
+            print(f"Product ID: {prod_id}")
+
+            if not Product.objects.filter(id=prod_id).exists():
+                print("Invalid product ID.")
+                return JsonResponse({'error': 'Invalid product ID'}, status=400)
+
+            cart_items = Cart.objects.filter(Q(product_id=prod_id) & Q(user=req.user))
+            if not cart_items.exists():
+                print("Cart item does not exist.")
+                return JsonResponse({'error': 'Cart item does not exist'}, status=404)
+
+            c = cart_items.first()
+            print(f"Cart item before update: {c}")
+
+            if c.quantity > 1:
+                c.quantity -= 1
+                c.save()
+            else:
+                c.delete()
+                c = None
+
+            user = req.user
+            cart = Cart.objects.filter(user=user)
+            amount = sum(item.quantity * item.product.discounted_price for item in cart)
+            totalamount = amount + 10
+
+            formatted_amount = format_rupiah(amount)
+            formatted_totalamount = format_rupiah(totalamount)
+
+            data = {
+                'quantity': c.quantity if c else 0,
+                'amount': formatted_amount,
+                'totalamount': formatted_totalamount,
+            }
+            print(f"Response data: {data}")
+            return JsonResponse(data)
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return JsonResponse({'error': str(e)}, status=500)
+    
+def remove_cart(req):
+    if req.method == 'GET':
+        try:
+            prod_id = req.GET['prod_id']
+            print(f"Product ID: {prod_id}")
+
+            if not Product.objects.filter(id=prod_id).exists():
+                print("Invalid product ID.")
+                return JsonResponse({'error': 'Invalid product ID'}, status=400)
+
+            cart_items = Cart.objects.filter(Q(product_id=prod_id) & Q(user=req.user))
+            if not cart_items.exists():
+                print("Cart item does not exist.")
+                return JsonResponse({'error': 'Cart item does not exist'}, status=404)
+
+            c = cart_items.first()
+            print(f"Cart item before deletion: {c}")
+
+            c.delete()
+
+            user = req.user
+            cart = Cart.objects.filter(user=user)
+            amount = sum(item.quantity * item.product.discounted_price for item in cart)
+            totalamount = amount + 10
+
+            formatted_amount = format_rupiah(amount)
+            formatted_totalamount = format_rupiah(totalamount)
+
+            data = {
+                'quantity': 0,
+                'amount': formatted_amount,
+                'totalamount': formatted_totalamount,
+            }
+            print(f"Response data: {data}")
+            return JsonResponse(data)
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return JsonResponse({'error': str(e)}, status=500)
