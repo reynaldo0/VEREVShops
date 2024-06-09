@@ -1017,16 +1017,16 @@ select {
   margin-top: 1.5rem;
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
-}
-
 .mt-7 {
   margin-top: 1.75rem;
 }
 
 .block {
   display: block;
+}
+
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -1700,6 +1700,11 @@ select {
   color: rgb(74 222 128 / var(--tw-text-opacity));
 }
 
+.text-green-600 {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
+}
+
 .text-green-800 {
   --tw-text-opacity: 1;
   color: rgb(22 101 52 / var(--tw-text-opacity));
@@ -1728,11 +1733,6 @@ select {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity));
-}
-
-.text-green-600 {
-  --tw-text-opacity: 1;
-  color: rgb(22 163 74 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2019,32 +2019,20 @@ select {
     width: 33.333333%;
   }
 
-  .md\:w-4\/5 {
-    width: 80%;
-  }
-
-  .md\:w-5\/12 {
-    width: 41.666667%;
-  }
-
-  .md\:w-7\/12 {
-    width: 58.333333%;
-  }
-
-  .md\:w-auto {
-    width: auto;
-  }
-
-  .md\:w-1\/5 {
-    width: 20%;
-  }
-
   .md\:w-1\/4 {
     width: 25%;
   }
 
   .md\:w-3\/4 {
     width: 75%;
+  }
+
+  .md\:w-4\/5 {
+    width: 80%;
+  }
+
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:flex-row {

@@ -38,12 +38,13 @@
           <div class="flex">
             <span class="title-font font-medium text-md md:text-xl text-gray-900 "> {{ product.fselling_price}}/-</span>
             <span class="line-through title-font font-medium text-lg text-red-500 md:block">{{ product.fselling_price }}</span>
-            <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Beli</button>
-            <form action="/add-cart">
-              <input type="hidden" name="prod_id" value={{ product.id }}></input>
+            <a href="{% url 'checkout' %}" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Beli</a>
+            <form action="/add-cart" class="inline">
+              <input type="hidden" name="prod_id" value={{ product.id }}>
               <button class="rounded-full w-10 h-10 bg-indigo-500 hover:bg-indigo-600 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                 <i class="uil uil-shopping-cart text-2xl text-white"></i>
               </button>
+              
           </form>
           </div>
         </div>

@@ -1,95 +1,99 @@
-{% include "base.html" %} {% include "navbar.html" %} {% if cart %}
+{% include "base.html" %}
+{% include "navbar.html" %}
 <h1 class="text-black font-bold container mx-auto text-center text-4xl mt-10">
   Shopping Cart
-</h1>
-<section class="text-gray-900 body-font">
-  <div class="container px-5 py-24 mx-auto flex flex-wrap">
-    <h3 class="text-gray-900 text-2xl font-semibold title-font mb-3">
-      List Item Anda
-    </h3>
-    <div class="flex flex-wrap w-full">
-      <!-- Bagian Daftar Menu (75%) -->
-      <div class="w-full md:w-3/4 p-4">
-        {% for item in cart %}
-        <div
-          class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
-        >
-          <div class="w-24 h-24 sm:mr-8 sm:mb-0 mb-4 flex-shrink-0">
-            <img
-              class="object-cover object-center w-full h-full"
-              src="{{ item.product.product_image.url }}"
-              alt="item"
-            />
-          </div>
-          <div class="flex-grow">
-            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-              {{ item.product.title }}
-            </h2>
-            <p class="leading-relaxed text-base">
-              {{ item.product.description | slice:":100"}}...
-            </p>
-            <label for="quantity" class="mr-2">Jumlah:</label>
-            <a class="minus-cart btn" data-pid="{{ item.product.id }}">
-              <i class="fas fa-minus-square fa-lg"></i>
-            </a>
-            <span id="quantity" class="mx-2">{{ item.quantity }}</span>
-            <a class="plus-cart btn" data-pid="{{ item.product.id }}">
-              <i class="fas fa-plus-square fa-lg"></i>
-            </a>
-            <div class="flex flex-row">
-              <button
-                class="flex mt-5 text-white bg-red-800 border-0 py-2 px-6 hover:bg-red-900 rounded"
-                data-pid="{{ item.product.id }}"
-              >
-                Remove
-              </button>
-              <span class="ml-auto text-xl mt-7 font-bold"
-                >{{ item.product.fselling_price }}/-</span
-              >
+  </h1>
+  {% if cart %}
+  <section class="text-gray-900 body-font">
+    <div class="container px-5 py-24 mx-auto flex flex-wrap">
+      <h3 class="text-gray-900 text-2xl font-semibold title-font mb-3">
+        List Item Anda
+      </h3>
+      <div class="flex flex-wrap w-full">
+        <!-- Bagian Daftar Menu (75%) -->
+        <div class="w-full md:w-3/4 p-4">
+          {% for item in cart %}
+          <div
+            class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
+          >
+            <div class="w-24 h-24 sm:mr-8 sm:mb-0 mb-4 flex-shrink-0">
+              <img
+                class="object-cover object-center w-full h-full"
+                src="{{ item.product.product_image.url }}"
+                alt="item"
+              />
+            </div>
+            <div class="flex-grow">
+              <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
+                {{ item.product.title }}
+              </h2>
+              <p class="leading-relaxed text-base">
+                {{ item.product.description | slice:":100"}}...
+              </p>
+              <label for="quantity" class="mr-2">Jumlah:</label>
+              <a class="minus-cart btn" pid="{{ item.product.id }}">
+                <i class="fas fa-minus-square fa-lg"></i>
+              </a>
+              <span id="quantity" class="mx-2">{{ item.quantity }}</span>
+              <a class="plus-cart btn" pid="{{ item.product.id }}">
+                <i class="fas fa-plus-square fa-lg"></i>
+              </a>
+              <div class="flex flex-row">
+                <button
+                  class="flex mt-5 text-white bg-red-800 border-0 py-2 px-6 hover:bg-red-900 rounded"
+                  data-pid="{{ item.product.id }}"
+                >
+                  Remove
+                </button>
+                <span class="ml-auto text-xl mt-7 font-bold"
+                  >{{ item.product.fselling_price }}/-</span
+                >
+              </div>
             </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
-      </div>
-      <!-- Bagian Pembayaran (25%) -->
-      <div class="w-full md:w-1/4 p-4">
-        <div
-          class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
-        >
-          <div class="flex-grow">
-            <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
-              Pembayaran Detail
-            </h2>
-            <p class="leading-relaxed text-base flex justify-between">
-              Jumlah
-              <span class="text-green-600 font-semibold ml-auto"
-                >RP {{ amount }}</span
-              >
-            </p>
-            <p class="leading-relaxed text-base flex justify-between">
-              Ongkir
-              <span class="text-green-600 font-semibold ml-auto"
-                >RP {{ shipping_cost }}</span
-              >
-            </p>
-            <hr class="border-gray-200 mt-3" />
-            <p class="leading-relaxed text-base flex justify-between">
-              Total
-              <span class="text-green-600 font-semibold"
-                >RP {{ totalamount }}</span
-              >
-            </p>
-            <button
-              type="submit"
-              class="w-full my-5 bg-blue-700 text-white p-2 rounded-lg mb-6 hover:bg-blue-600"
-            >
-              Buat Pesanan
-            </button>
-            <!-- Tambahkan konten pembayaran di sini -->
+        <!-- Bagian Pembayaran (25%) -->
+        <div class="w-full md:w-1/4 p-4">
+          <div
+            class="flex border-2 rounded-lg border-gray-200 border-opacity-50 p-8 sm:flex-row flex-col"
+          >
+            <div class="flex-grow">
+              <h2 class="text-gray-900 text-lg title-font font-medium mb-3">
+                Pembayaran Detail
+              </h2>
+              <p class="leading-relaxed text-base flex justify-between">
+                Jumlah
+                <span class="text-green-600 font-semibold ml-auto"
+                  > {{ amount }}</span
+                >
+              </p>
+              <p class="leading-relaxed text-base flex justify-between">
+                Ongkir
+                <span class="text-green-600 font-semibold ml-auto" id="amount"
+                  >RP 10.000</span
+                >
+              </p>
+              <hr class="border-gray-200 mt-3" />
+              <p class="leading-relaxed text-base flex justify-between">
+                Total
+                <span class="text-green-600 font-semibold" id="totalamount"
+                  >{{ totalamount }}</span
+                >
+              </p>
+              <a href="{% url 'checkout' %}">
+                <button
+                  type="submit"
+                  class="w-full my-5 bg-blue-700 text-white p-2 rounded-lg mb-6 hover:bg-blue-600"
+                >
+                  Buat Pesanan
+                </button>
+              </a>
+              <!-- Tambahkan konten pembayaran di sini -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 {% endif %}

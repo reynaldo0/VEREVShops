@@ -105,7 +105,28 @@ def add_cart(req):
     Cart(user=user, product=product).save()
     return redirect("/cart")
 
-def show_cart(req):
-    user = req.user
-    cart = Cart.objects.filter(user=user)
-    return render(req, 'addcart.html', locals())
+def format_rupiah(amount):
+    return f"RP {amount:,.3f}".replace(',', '.')
+
+def show_cart(request):
+    user = request.user
+    cart_items = Cart.objects.filter(user=user)
+    
+    amount = 0
+    for item in cart_items:
+        value = item.quantity * item.product.discounted_price
+        amount += value
+    
+    totalamount = amount + 10  # Assuming 10 is the shipping cost
+    
+    # Format as Indonesian Rupiah
+    formatted_amount = format_rupiah(amount)
+    formatted_totalamount = format_rupiah(totalamount)
+    formatted_shipping_cost = format_rupiah(10)
+    
+    return render(request, 'addcart.html', {
+        'cart': cart_items,
+        'amount': formatted_amount,
+        'shipping_cost': formatted_shipping_cost,
+        'totalamount': formatted_totalamount,
+    })
