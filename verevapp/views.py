@@ -1,6 +1,8 @@
 from django.db.models import Count
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
+from django.db.models import Q
 from . models import Cart, Customer, Product
 from . forms import CustomerRegistForm, CustomerProfileForm
 from django.contrib import messages
@@ -130,3 +132,49 @@ def show_cart(request):
         'shipping_cost': formatted_shipping_cost,
         'totalamount': formatted_totalamount,
     })
+
+def plus_cart(req):
+    if req.method == 'GET':
+        try:
+            prod_id = req.GET['prod_id']
+            print(f"Product ID: {prod_id}")
+            
+            if not Product.objects.filter(id=prod_id).exists():
+                print("Invalid product ID.")
+                return JsonResponse({'error': 'Invalid product ID'}, status=400)
+
+            cart_items = Cart.objects.filter(Q(product_id=prod_id) & Q(user=req.user))
+            if not cart_items.exists():
+                print("Cart item does not exist.")
+                return JsonResponse({'error': 'Cart item does not exist'}, status=404)
+            
+            c = cart_items.first()
+            print(f"Cart item before update: {c}")
+            
+            c.quantity += 1
+            c.save()
+            print(f"Cart item after update: {c}")
+            
+            user = req.user
+            cart = Cart.objects.filter(user=user)
+            amount = 0
+            for item in cart:
+                value = item.quantity * item.product.discounted_price
+                amount = amount + value
+            
+            totalamount = amount + 10
+            # Format as Indonesian Rupiah
+            formatted_amount = format_rupiah(amount)
+            formatted_totalamount = format_rupiah(totalamount)
+            
+            data = {
+                'quantity': c.quantity,
+                'amount': formatted_amount,
+                'totalamount': formatted_totalamount,
+            }
+            print(f"Response data: {data}")
+            return JsonResponse(data)
+        
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return JsonResponse({'error': str(e)}, status=500)

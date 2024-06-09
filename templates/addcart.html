@@ -30,14 +30,16 @@
               <p class="leading-relaxed text-base">
                 {{ item.product.description | slice:":100"}}...
               </p>
+              <div class="my-5">
               <label for="quantity" class="mr-2">Jumlah:</label>
-              <a class="minus-cart btn" pid="{{ item.product.id }}">
+              <a class="minus-cart" pid="{{ item.product.id }}">
                 <i class="fas fa-minus-square fa-lg"></i>
               </a>
               <span id="quantity" class="mx-2">{{ item.quantity }}</span>
-              <a class="plus-cart btn" pid="{{ item.product.id }}">
+              <a class="plus-cart" pid="{{ item.product.id }}">
                 <i class="fas fa-plus-square fa-lg"></i>
               </a>
+            </div>
               <div class="flex flex-row">
                 <button
                   class="flex mt-5 text-white bg-red-800 border-0 py-2 px-6 hover:bg-red-900 rounded"
@@ -46,7 +48,7 @@
                   Remove
                 </button>
                 <span class="ml-auto text-xl mt-7 font-bold"
-                  >{{ item.product.fselling_price }}/-</span
+                  >{{ item.product.fdiscounted_price }}/-</span
                 >
               </div>
             </div>
@@ -64,13 +66,13 @@
               </h2>
               <p class="leading-relaxed text-base flex justify-between">
                 Jumlah
-                <span class="text-green-600 font-semibold ml-auto"
+                <span class="text-green-600 font-semibold ml-auto" id="amount"
                   > {{ amount }}</span
                 >
               </p>
               <p class="leading-relaxed text-base flex justify-between">
                 Ongkir
-                <span class="text-green-600 font-semibold ml-auto" id="amount"
+                <span class="text-green-600 font-semibold ml-auto"
                   >RP 10.000</span
                 >
               </p>
