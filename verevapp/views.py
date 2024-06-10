@@ -133,6 +133,10 @@ def show_cart(request):
         'totalamount': formatted_totalamount,
     })
 
+class checkout(View):
+    def get(self,req):
+        return render(req, 'checkout.html',locals())
+
 def plus_cart(req):
     if req.method == 'GET':
         try:
@@ -201,8 +205,7 @@ def minus_cart(req):
                 c.quantity -= 1
                 c.save()
             else:
-                c.delete()
-                c = None
+                return JsonResponse({'error': 'Quantity cannot be less than 1'}, status=400)
 
             user = req.user
             cart = Cart.objects.filter(user=user)
@@ -213,7 +216,7 @@ def minus_cart(req):
             formatted_totalamount = format_rupiah(totalamount)
 
             data = {
-                'quantity': c.quantity if c else 0,
+                'quantity': c.quantity,
                 'amount': formatted_amount,
                 'totalamount': formatted_totalamount,
             }
@@ -246,6 +249,10 @@ def remove_cart(req):
 
             user = req.user
             cart = Cart.objects.filter(user=user)
+            if not cart.exists():
+                print("Cart is empty, redirecting.")
+                return JsonResponse({'redirect': True}, status=200)
+
             amount = sum(item.quantity * item.product.discounted_price for item in cart)
             totalamount = amount + 10
 
@@ -256,6 +263,7 @@ def remove_cart(req):
                 'quantity': 0,
                 'amount': formatted_amount,
                 'totalamount': formatted_totalamount,
+                'redirect': False,
             }
             print(f"Response data: {data}")
             return JsonResponse(data)
