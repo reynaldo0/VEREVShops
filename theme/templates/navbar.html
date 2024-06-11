@@ -4,88 +4,115 @@
 
 <nav class="bg-blue-900 border-gray-200">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="{% static "images/neel.png" %}" class="h-8" alt="Verev Logo" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">VEREVShops</span>
-    </a>
-    <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-      <a>
-        <i class="uil uil-shopping-cart text-white text-2xl w-8 h-8 flex items-center justify-center"></i>
-      </a>
-      <a href="#">
-        <i class="uil uil-heart-alt text-white text-2xl w-8 h-8 flex items-center justify-center px-5"></i>
-      </a>
-        <button type="button" class="flex text-sm bg-blue-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-blue-800" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-          <span class="sr-only">Open user menu</span>
-          <img class="w-8 h-8 rounded-full" src="{% static "images/banner/b1.jpg" %}" alt="user photo">
-        </button>
-        <!-- Dropdown menu -->
-        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-blue-100 rounded-lg shadow dark:bg-blue-900 dark:divide-blue-700" id="user-dropdown">
-          <div class="px-4 py-3">
-            <span class="block text-sm text-gray-900 dark:text-white">{{request.user}}</span>
-            <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{ request.user.email }}</span>
-          </div>
-          <ul class="py-2" aria-labelledby="user-menu-button">
-            <li>
-              <a href="{% url 'profile' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-800 dark:text-gray-200 dark:hover:text-white">Profile</a>
-            </li>
-            <li>
-              <a href="{% url 'setting' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-800 dark:text-gray-200 dark:hover:text-white">Alamat</a>
-            </li>
-            <li>
-              <a href="{% url 'changepw' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-800 dark:text-gray-200 dark:hover:text-white">Ganti Password</a>
-            </li>
-            <li>
-              <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-700 dark:text-gray-200 dark:hover:text-white">Keluar</a>
-            </li>
-          </ul>
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="{% static "images/neel.png" %}" class="h-8" alt="Verev Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">VEREV</span>
+        </a>
+        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <a>
+                <i class="uil uil-shopping-cart text-white text-2xl w-8 h-8 flex items-center justify-center"></i>
+            </a>
+            <a href="#">
+                <i class="uil uil-heart-alt text-white text-2xl w-8 h-8 flex items-center justify-center px-5"></i>
+            </a>
+            <button type="button" class="flex text-sm bg-blue-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-blue-800" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                <span class="sr-only">Open user menu</span>
+                <img class="w-8 h-8 rounded-full" src="{% static "images/banner/b1.jpg" %}" alt="user photo">
+            </button>
+            <!-- Dropdown menu -->
+            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-blue-100 rounded-lg shadow dark:bg-blue-900 dark:divide-blue-700" id="user-dropdown">
+                <div class="px-4 py-3">
+                    <span class="block text-sm text-gray-900 dark:text-white">{{ request.user }}</span>
+                    <span class="block text-sm text-gray-500 truncate dark:text-gray-400">{{ request.user.email }}</span>
+                </div>
+                <ul class="py-2" aria-labelledby="user-menu-button">
+                    <li>
+                        <a href="{% url 'profile' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-800 dark:text-gray-200 dark:hover:text-white">Profile</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'setting' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-800 dark:text-gray-200 dark:hover:text-white">Alamat</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'changepw' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-800 dark:text-gray-200 dark:hover:text-white">Ganti Password</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-blue-700 dark:text-gray-200 dark:hover:text-white">Keluar</a>
+                    </li>
+                </ul>
+            </div>
+            <button id="menu-toggle" data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-blue-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:text-white dark:hover:bg-blue-800 dark:focus:ring-blue-700" aria-controls="navbar-user" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5 hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path class="line1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
         </div>
-        <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-blue-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:text-white dark:hover:bg-blue-800 dark:focus:ring-blue-700" aria-controls="navbar-user" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-      </button>
-    </div>
-    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-      <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-blue-800 md:dark:bg-blue-900 dark:border-blue-700">
-      {% if request.user.is_authenticated %}
-        <li>
-          <a href="{% url 'home' %}" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white" aria-current="page">Home</a>
-        </li>
-        <li>
-          <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-blue-700 dark:hover:bg-blue-700 md:dark:hover:bg-transparent {% if request.path == category %}active{% endif %}">Product <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-          </svg></button>
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 transition-all duration-300 ease-in-out" id="navbar-user">
+            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-blue-800 md:dark:bg-blue-900 dark:border-blue-700">
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a href="{% url 'home' %}" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white" aria-current="page">Home</a>
+                </li>
+                <li>
+                    <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-blue-700 dark:hover:bg-blue-700 md:dark:hover:bg-transparent">Product <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg></button>
                     <!-- Dropdown menu -->
                     <div id="dropdownNavbar" class="z-50 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-blue-900 dark:divide-blue-600">
-                        <ul class="py-2 text-sm text-gray-700 dark:text-white" aria-labelledby="dropdownLargeButton">
-                          <li>
-                            <a href="{% url 'category' 'CF' %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-blue-800 dark:hover:text-white">Coffe</a>
-                          </li>
-                          <li>
-                            <a href="{% url 'category' 'DS' %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-blue-800 dark:hover:text-white">Dessert</a>
-                          </li>
+                        <ul class="py-2 text-sm text-gray-700 dark:text-white" aria-labelledby="dropdownNavbarLink">
+                            <li>
+                                <a href="{% url 'category' 'CF' %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-blue-800 dark:hover:text-white">Coffe</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'category' 'DS' %}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-blue-800 dark:hover:text-white">Dessert</a>
+                            </li>
                         </ul>
-                        
                     </div>
-        </li>
-        <li>
-          <a href="{% url 'about' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-blue-700">About</a>
-        </li>
-        <li>
-          <a href="{% url 'contact' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-blue-700">Contact</a>
-        </li>
-        {% else %}
-        <li>
-          <a href="{% url 'login' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-blue-700">Masuk</a>
-        </li>
-        <li>
-          <a href="{% url 'regist' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-blue-700">Daftar</a>
-        </li>
-        {% endif %}
-      </ul>
+                </li>
+                <li>
+                    <a href="{% url 'about' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-blue-700">About</a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-blue-700">Contact</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-blue-700">Masuk</a>
+                </li>
+                <li>
+                    <a href="{% url 'regist' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-blue-700">Daftar</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-    </div>
-  </nav>
-  
+</nav>
+
+<style>
+/* Hamburger menu icon animation */
+.hamburger-icon {
+    transition: transform 0.3s ease;
+}
+
+.hamburger-icon.open {
+    transform: rotate(90deg);
+}
+
+/* Navbar transition */
+#navbar-user {
+    transition: max-height 0.3s ease-in-out;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('menu-toggle');
+    const navbarMenu = document.getElementById('navbar-user');
+    const hamburgerIcon = toggleButton.querySelector('.hamburger-icon');
+
+    toggleButton.addEventListener('click', function() {
+        navbarMenu.classList.toggle('hidden');
+        hamburgerIcon.classList.toggle('open');
+    });
+});
+</script>
