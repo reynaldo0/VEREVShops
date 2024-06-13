@@ -24,6 +24,8 @@ urlpatterns = [
     path("minuscart/", views.minus_cart),
     path("removecart/", views.remove_cart),
 
+    path('generate_pdf/', views.GeneratePDF.as_view(), name='generate_pdf'),
+
     # Regist & Login Auth
     path("regist/", views.CustomerRegistView.as_view(), name='regist'),
     path("login/", auth_view.LoginView.as_view(template_name='login.html', authentication_form=LoginForm), name='login'),

@@ -23,17 +23,20 @@
     <div class="md:w-1/3 p-4 md:ml-10">
       <h4 class="text-2xl font-bold mb-4">Select Shipping Address</h4>
       <hr class="mb-4">
-      <form method="post" id="myform">
+      <form method="post" action="{% url 'generate_pdf' %}">
         {% csrf_token %}
+        <!-- Daftar alamat -->
         {% for ad in add %}
         <div class="border rounded-lg p-4 mb-4">
           <div>
             <h5 class="text-xl font-semibold">{{ ad.name }}</h5>
+            <!-- Detail alamat -->
             <p class="text-gray-700">Nomor Telp. : {{ ad.mobile }}</p>
             <p class="text-gray-700">Nama Kecamatan : {{ ad.locality }}</p>
             <p class="text-gray-700">Nama Kota : {{ ad.city }}</p>
             <p class="text-gray-700">Nama Pulau : {{ ad.state }}</p>
             <p class="text-gray-700">Kode Pos : {{ ad.zipcode }}</p>
+            <!-- Radio button untuk pilih alamat -->
             <div class="flex items-center mt-2 mb-5">
               <input class="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2" type="radio" name="custid" id="custadd{{ forloop.counter }}" value="{{ ad.id }}">
               <label class="form-radio-label font-bold text-gray-700" for="custadd{{ forloop.counter }}">
@@ -43,14 +46,27 @@
           </div>
         </div>
         {% endfor %}
-        <div class="mb-3">
-          <label for="totamount" class="block text-gray-700 font-medium mb-2">Total Amount</label>
-          <input type="text" class="form-control w-full p-2 border border-gray-300 rounded-lg" name="totamount" value="RP. {{ totalamount|floatformat:3 }}" readonly>
+      
+        <!-- Pilihan metode pembayaran -->
+        <div class="mb-4">
+          <label class="block text-gray-700 font-medium mb-2">Choose Payment Method:</label>
+          <div class="flex items-center mb-2">
+            <input type="radio" class="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2" name="payment_method" id="ovo" value="OVO">
+            <label for="ovo" class="font-bold text-gray-700 mr-4">OVO</label>
+            <input type="radio" class="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2" name="payment_method" id="dana" value="DANA">
+            <label for="dana" class="font-bold text-gray-700 mr-4">DANA</label>
+            <input type="radio" class="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2" name="payment_method" id="gopay" value="GoPay">
+            <label for="gopay" class="font-bold text-gray-700">GoPay</label>
+          </div>
         </div>
+      
+        <!-- Tombol untuk submit -->
         <div class="text-right">
-          <button type="submit" class="bg-yellow-500 text-white py-2 px-5 rounded-lg font-bold hover:bg-yellow-600">Payment</button>
+          <button type="submit" class="bg-yellow-500 text-white py-2 px-5 rounded-lg font-bold hover:bg-yellow-600">Generate PDF</button>
         </div>
       </form>
+      
+      
     </div>
   </div>
 </div>

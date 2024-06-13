@@ -1,11 +1,12 @@
 from django.db.models import Count
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from django.db.models import Q
 from . models import Cart, Customer, Product
 from . forms import CustomerRegistForm, CustomerProfileForm
 from django.contrib import messages
+from reportlab.pdfgen import canvas
 
 # Create your views here.
 def home(req):
@@ -144,6 +145,83 @@ class checkout(View):
             famount = famount + value
         totalamount = famount + 10
         return render(req, 'checkout.html',locals())
+    
+class GeneratePDF(View):
+    def post(self, request):
+        user = request.user
+        address_id = request.POST.get('custid')
+        payment_method = request.POST.get('payment_method')
+
+        # Retrieve address and cart items
+        address = Customer.objects.get(id=address_id)
+        cart_items = Cart.objects.filter(user=user)
+
+        # Calculate total amount
+        famount = 0
+        for p in cart_items:
+            value = p.quantity * p.product.discounted_price
+            famount += value
+        totalamount = famount + 10  # Adding fixed additional cost
+
+        # Format total amount to Rupiah
+        totalamount_rupiah = format_rupiah(totalamount)
+
+        # Generate PDF
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'filename="checkout_summary.pdf"'
+
+        p = canvas.Canvas(response)
+        width, height = p._pagesize
+
+        # Set font and size for the title
+        p.setFont("Helvetica-Bold", 16)
+        p.drawString(50, height - 50, "Struk Pembayaran")
+
+        # Set font and size for the content
+        p.setFont("Helvetica", 12)
+
+        # Draw a line under the title
+        p.line(50, height - 60, width - 50, height - 60)
+
+        # Draw shipping address section
+        p.drawString(50, height - 100, "Alamat Pengiriman:")
+        p.drawString(50, height - 120, f"{address.name}")
+        p.drawString(50, height - 140, f"{address.locality}")
+        p.drawString(50, height - 160, f"{address.city}, {address.state} {address.zipcode}")
+        p.drawString(50, height - 180, f"Nomor Telepon: {address.mobile}")
+
+        # Draw line under shipping address
+        p.line(50, height - 200, width - 50, height - 200)
+
+        # Draw items section
+        y_position = height - 230
+        for item in cart_items:
+            p.drawString(50, y_position, f"{item.product.title} x {item.quantity}")
+            item_total = item.quantity * item.product.discounted_price
+            p.drawString(width - 100, y_position, f"Rp. {item_total:,.3f}")
+            y_position -= 20
+
+        # Draw line above total amount
+        p.line(50, y_position, width - 50, y_position)
+
+        # Draw total amount
+        p.setFont("Helvetica-Bold", 14)
+        p.drawString(50, y_position - 20, f"Total: Rp. {totalamount_rupiah}")
+
+        # Draw payment method
+        p.drawString(50, y_position - 50, f"Metode Pembayaran: {payment_method}")
+
+        # Draw line above footer
+        p.line(50, 80, width - 50, 80)
+
+        # Draw footer
+        p.setFont("Helvetica-Oblique", 10)
+        p.drawString(50, 70, "Terima kasih telah berbelanja! - Created by Reynaldo Yusellino")
+
+        p.showPage()
+        p.save()
+
+        return response
 
 def plus_cart(req):
     if req.method == 'GET':

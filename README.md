@@ -7,3 +7,5 @@
 * python manage.py tailwind init
 * python manage.py collectstatic
 * python manage.py tailwind start
+* pip install Django xhtml2pdf
+* pip install reportlab
