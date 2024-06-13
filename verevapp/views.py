@@ -137,6 +137,12 @@ class checkout(View):
     def get(self,req):
         user = req.user
         add = Customer.objects.filter(user=user)
+        cart_items = Cart.objects.filter(user=user)
+        famount = 0
+        for p in cart_items:
+            value = p.quantity * p.product.discounted_price
+            famount = famount + value
+        totalamount = famount + 10
         return render(req, 'checkout.html',locals())
 
 def plus_cart(req):
