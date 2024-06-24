@@ -37,10 +37,10 @@
             <p class="text-gray-700">Nama Pulau : {{ ad.state }}</p>
             <p class="text-gray-700">Kode Pos : {{ ad.zipcode }}</p>
             <!-- Radio button untuk pilih alamat -->
-            <div class="flex items-center mt-2 mb-5">
-              <input class="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2" type="radio" name="custid" id="custadd{{ forloop.counter }}" value="{{ ad.id }}">
+            <div class="flex items-center mt-2 mb-2">
+              <input class="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out mr-2" type="radio" name="custid" id="custadd{{ forloop.counter }}" value="{{ ad.id }}">
               <label class="form-radio-label font-bold text-gray-700" for="custadd{{ forloop.counter }}">
-                Alamat : {{ forloop.counter }}
+                Alamat {{ forloop.counter }}
               </label>
             </div>
           </div>
@@ -50,13 +50,19 @@
         <!-- Pilihan metode pembayaran -->
         <div class="mb-4">
           <label class="block text-gray-700 font-medium mb-2">Choose Payment Method:</label>
-          <div class="flex items-center mb-2">
-            <input type="radio" class="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2" name="payment_method" id="ovo" value="OVO">
-            <label for="ovo" class="font-bold text-gray-700 mr-4">OVO</label>
-            <input type="radio" class="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2" name="payment_method" id="dana" value="DANA">
-            <label for="dana" class="font-bold text-gray-700 mr-4">DANA</label>
-            <input type="radio" class="form-radio h-4 w-4 text-blue-600 transition duration-150 ease-in-out mr-2" name="payment_method" id="gopay" value="GoPay">
-            <label for="gopay" class="font-bold text-gray-700">GoPay</label>
+          <div class="flex items-center space-x-4">
+            <label for="ovo" class="flex items-center cursor-pointer">
+              <input type="radio" id="ovo" name="payment_method" value="OVO" class="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out mr-2">
+              <span class="text-gray-700 font-bold">OVO</span>
+            </label>
+            <label for="dana" class="flex items-center cursor-pointer">
+              <input type="radio" id="dana" name="payment_method" value="DANA" class="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out mr-2">
+              <span class="text-gray-700 font-bold">DANA</span>
+            </label>
+            <label for="gopay" class="flex items-center cursor-pointer">
+              <input type="radio" id="gopay" name="payment_method" value="GoPay" class="form-radio h-5 w-5 text-blue-600 transition duration-150 ease-in-out mr-2">
+              <span class="text-gray-700 font-bold">GoPay</span>
+            </label>
           </div>
         </div>
       
@@ -65,8 +71,6 @@
           <button type="submit" class="bg-yellow-500 text-white py-2 px-5 rounded-lg font-bold hover:bg-yellow-600">Bayar Sekarang</button>
         </div>
       </form>
-      
-      
     </div>
   </div>
 </div>
