@@ -15,7 +15,7 @@
     <div class="flex flex-wrap">
       {% for prod in product %}
       <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-        <div class="bg-blue-900 px-5 rounded-lg">
+        <div class="shadow-lg shadow-blue-900 bg-blue-900 bg-opacity-70 px-5 rounded-lg">
           <a class="block relative rounded overflow-hidden">
             <img
               alt="ecommerce"
@@ -40,9 +40,9 @@
             </p>
             <a
               href="{% url 'proddetail' prod.id %}"
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-00 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800 my-5 mx-10 md:mx-0"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-00 rounded-lg bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 my-5 mx-10 md:mx-0"
             >
-              Read more<svg
+              Selengkapnya<svg
                 class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
