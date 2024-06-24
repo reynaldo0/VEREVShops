@@ -2,22 +2,21 @@
 
 {% load static %}
 
-<nav class="bg-blue-900 border-gray-200">
+<nav class="bg-blue-900 border-gray-200 sticky top-0 z-50">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="{% static "images/neel.png" %}" class="h-8" alt="Verev Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">VEREV</span>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">VE<span class="text-red-500">REV</span></span>
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <a>
-                <i class="uil uil-shopping-cart text-white text-2xl w-8 h-8 flex items-center justify-center"></i>
+            <a href="{% url 'showcart' %}">
+                <i class="uil uil-heart-alt text-white text-2xl w-8 h-8 flex items-center justify-center"></i>
             </a>
-            <a href="#">
-                <i class="uil uil-heart-alt text-white text-2xl w-8 h-8 flex items-center justify-center px-5"></i>
+            <a href="{% url 'checkout' %}">
+                <i class="uil uil-shopping-cart text-white text-2xl w-8 h-8 flex items-center justify-center px-5"></i>
             </a>
-            <button type="button" class="flex text-sm bg-blue-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-blue-800" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <button type="button" class="flex" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" src="{% static "images/banner/b1.jpg" %}" alt="user photo">
+                <i class="uil uil-user-circle text-2xl text-white"></i>
             </button>
             <!-- Dropdown menu -->
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-blue-100 rounded-lg shadow dark:bg-blue-900 dark:divide-blue-700" id="user-dropdown">
@@ -87,32 +86,3 @@
         </div>
     </div>
 </nav>
-
-<style>
-/* Hamburger menu icon animation */
-.hamburger-icon {
-    transition: transform 0.3s ease;
-}
-
-.hamburger-icon.open {
-    transform: rotate(90deg);
-}
-
-/* Navbar transition */
-#navbar-user {
-    transition: max-height 0.3s ease-in-out;
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const toggleButton = document.getElementById('menu-toggle');
-    const navbarMenu = document.getElementById('navbar-user');
-    const hamburgerIcon = toggleButton.querySelector('.hamburger-icon');
-
-    toggleButton.addEventListener('click', function() {
-        navbarMenu.classList.toggle('hidden');
-        hamburgerIcon.classList.toggle('open');
-    });
-});
-</script>

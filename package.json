@@ -1,0 +1,12 @@
+{
+  "name": "verev",
+  "version": "1.0.0",
+  "description": "* pip install django\r * pip install pillow\r * pip install django_browser_reload\r * pip install django-tailwind\r * python manage.py tailwind install\r * pip install tailwind\r * python manage.py tailwind init\r * python manage.py collectstatic\r * python manage.py tailwind start\r * pip install Django xhtml2pdf\r * pip install reportlab",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
